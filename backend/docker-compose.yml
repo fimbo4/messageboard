@@ -1,0 +1,60 @@
+version: "3"
+services:
+  database:
+    image: message_board_db
+    container_name: message_board_db_container
+    restart: always
+    ports:
+      - "1300:3306"
+    expose:
+      - "1300"
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: messageboard
+      MYSQL_DATABASE: messageboard
+
+  api:
+    image: api
+    container_name: api_container
+    #command: sh -c "sleep 10s"
+    # depends_on:
+    #   - database
+    restart: always
+    ports:
+      - "4000:4001"
+    expose:
+      - "4000"
+    environment:
+      DB_HOST: "database"
+      DB_PORT: "3306"
+      DB_USER: "root"
+      DB_PASSWORD: "messageboard"
+      DB_NAME: "messageboard"
+
+  microservice1:
+    image: ms1
+    container_name: microservice1_container
+    restart: always
+    ports:
+      - "1313:9001"
+    expose:
+      - "1313"
+    environment:
+      API_HOST: "api"
+
+  microservice2:
+    image: ms2
+    container_name: microservice2_container
+    restart: always
+    ports:
+      - "1314:9002"
+    expose:
+      - "1314"
+    environment:
+      API_HOST: "api"
+    network_mode: "host"
+
+volumes:
+  db_data:
+    driver: local

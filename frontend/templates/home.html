@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div style="width: 50%; float: left;">
+        <h2>Create or search posts</h2>
+        <div style="float: left;">
+            <form action="/action_page.php">
+                <label>Identity:</label>
+                <br>
+                <input type="text" id="identity" name="identity"><br><br>
+            </form>
+
+            <label for="Message">Message:</label>
+            <br>
+
+            <textarea id="message" name="message"></textarea>
+            <br>
+
+            <button onclick="post()" type="button">Post</button>
+            <br>
+            <br>
+            <br>
+            <img src="static/monday-typing-monkey.gif" alt="">
+        </div>
+
+        <div style="float: left; margin-left: 1%;">
+            <label for="Search">Search posts:</label>
+            <br>
+
+            <input type="text" id="search" name="search"><br><br>
+            <button onclick="search()" type="button">Search</button>
+
+        </div>
+    </div>
+
+    <div style="width: 50%; float: right;">
+        <h2>Posts</h2>
+        <table>
+            <tr>
+              <td>Linus</td>
+            </tr>
+            <tr>
+              <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed corrupti aliquid, ipsam facere doloremque nisi deserunt iusto repudiandae at culpa. Nihil quis quia facilis possimus fugit tempore hic beatae saepe eligendi eveniet aliquid est accusamus, placeat veritatis doloremque quo ex animi maxime obcaecati assumenda neque corporis totam explicabo? Praesentium dignissimos odit sed magni, quo placeat, aspernatur voluptate provident explicabo iste autem quae. Commodi veniam, magnam aliquam debitis libero sunt quibusdam praesentium totam quas tempora dicta accusamus saepe dolor aperiam dolores harum? Quas aut blanditiis nesciunt iusto id perferendis harum quisquam nulla, eos est quibusdam at minus eligendi quod maxime enim!</td>
+            </tr>
+          </table>
+          <br>
+          <br>
+    </div>
+
+</body>
+<script>
+    function post(){
+
+        let identity = document.getElementById("identity").value;
+        let message = document.getElementById("message").value;
+
+        let data = {
+            "identity" : identity,
+            "message" : message
+        };
+
+        fetch('/post_message', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+
+        };
+
+    function search(){
+        let search_query = document.getElementById("search").value;
+        let data = {
+            "search_query" : search_query
+        };
+        console.log(data);
+        fetch('/search_message', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+    };
+</script>
+</html>

@@ -1,0 +1,16 @@
+body{
+    background-image: url("starbackground.gif");
+    color: white;
+}
+
+table, th, td{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    overflow-x:hidden;
+    table-layout:fixed;
+    width:100%;
+    height: auto;
+}
+
+tr:nth-child(even) {background-color: #6074A1;}
