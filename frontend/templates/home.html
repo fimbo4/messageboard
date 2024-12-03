@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
+{% block body %}
 <body>
 
     <div style="width: 50%; float: left;">
@@ -43,19 +43,14 @@
 
     <div style="width: 50%; float: right;">
         <h2>Posts</h2>
-        <table>
-            <tr>
-              <td>Linus</td>
-            </tr>
-            <tr>
-              <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed corrupti aliquid, ipsam facere doloremque nisi deserunt iusto repudiandae at culpa. Nihil quis quia facilis possimus fugit tempore hic beatae saepe eligendi eveniet aliquid est accusamus, placeat veritatis doloremque quo ex animi maxime obcaecati assumenda neque corporis totam explicabo? Praesentium dignissimos odit sed magni, quo placeat, aspernatur voluptate provident explicabo iste autem quae. Commodi veniam, magnam aliquam debitis libero sunt quibusdam praesentium totam quas tempora dicta accusamus saepe dolor aperiam dolores harum? Quas aut blanditiis nesciunt iusto id perferendis harum quisquam nulla, eos est quibusdam at minus eligendi quod maxime enim!</td>
-            </tr>
-          </table>
           <br>
           <br>
+          {{data|safe}}
     </div>
 
 </body>
+{%endblock%}
+
 <script>
     function post(){
 
@@ -78,6 +73,7 @@
         };
         console.log(data);
         fetch('/search_message', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+        window.location.reload();
     };
 </script>
 </html>
