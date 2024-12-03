@@ -8,7 +8,7 @@ WORKDIR /microservice1
 
 RUN pip install -r requirements.txt
 
-EXPOSE 1313
+EXPOSE 9001
 
 CMD ["python3", "ms1.py"]
 

@@ -10,6 +10,6 @@ WORKDIR /api
 
 RUN pip install -r requirements.txt
 
-EXPOSE 4000
+EXPOSE 4001
 
 CMD ["python3", "api.py"]
