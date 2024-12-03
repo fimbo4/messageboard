@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: messageboard-services
+  labels:
+    service: flask
+spec:
+  type: LoadBalancer
+  selector:
+    app: flask-pod
+  ports:
+    - name: "bind-ms1"
+      protocol: "TCP"
+      port: 9001
+      targetPort: 9001
+    - name: "bind-frontend"
+      protocol: "TCP"
+      port: 5001
+      targetPort: 5001
+    - name: "bind-ms2"
+      protocol: "TCP"
+      port: 9002
+      targetPort: 9002
+    - name: "bind-api"
+      protocol: "TCP"
+      port: 4001
+      targetPort: 4001
